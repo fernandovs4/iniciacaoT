@@ -14,12 +14,19 @@ let hospitaisSelecionados= [];
             
                     let hospitais_div = ""
                     hospitais = data.hospitais;
-                    quantidadeHospitais = hospitais.length;
-                    for (let i = 0; i < hospitais.length; i++) {
-                        hospitais_div += " <div    class= 'hospitais1'  > <div style='padding: 6px 2px'  class = 'hosp" + i + "' >" + hospitais[i]+    "</div> </div>" ;
+                    if (hospitais.length == 0){
+                        document.querySelector('.nao_encontrado').innerText = "Nenhum hospital encontrado"
                     }
-                    document.querySelector('.nome_hospital').innerHTML = hospitais_div;
-                    cor()
+                    else{
+                        quantidadeHospitais = hospitais.length;
+                        for (let i = 0; i < hospitais.length; i++) {
+                            hospitais_div += " <div    class= 'hospitais1'  > <div style='padding: 6px 2px'  class = 'hosp" + i + "' >" + hospitais[i]+    "</div> </div>" ;
+                        }
+                        document.querySelector('.nome_hospital').innerHTML = hospitais_div;
+                        cor()
+
+                    }
+                   
 
                 }
                 
