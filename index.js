@@ -70,7 +70,7 @@ let hospitaisSelecionados= [];
 
 
              function buscarPost(){
-                text = document.getElementById('texto');    
+                text = document.getElementById('texto').value;    
                 const data = { "mensagem": text};
                 const json = JSON.stringify(data);
                 console.log(json);
