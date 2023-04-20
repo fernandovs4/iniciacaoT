@@ -134,7 +134,7 @@
                     body: json
                     };
 
-                fetch('http://iniciacaotec.pythonanywhere.com/texto', requestOptions)
+                fetch('https://iniciacaotec.pythonanywhere.com/texto', requestOptions)
                     .then(response => response.json())
                     .then(data => MostraNaTela(data))
                     .catch(error => console.error(error));
