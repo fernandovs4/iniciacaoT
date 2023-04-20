@@ -80,7 +80,7 @@ let hospitaisSelecionados= [];
                     body: json
                     };
 
-                fetch('http://localhost:8080/texto', requestOptions)
+                fetch('http://localhost:8080/texto',{ mode: 'no-cors' }, requestOptions, )
                     .then(response => response.json())
                     .then(data => MostraNaTela(data))
                     .catch(error => console.error(error));
