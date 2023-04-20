@@ -5,47 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscador</title>
-    <style>
-        .nome_hospital{
-            font-size: 20px;
-            font-weight: bold;
-            color: black;    
-        }
-        h1{
-            display: inline-block;
-            margin-right: 200px;
-        }
-        body{
-            font-family:Arial, Helvetica, sans-serif;
-        }
-        #enviarSelecionados{
-            margin-top: 10px;
-            background-color: rgb(95, 160, 98);
-            color: rgb(58, 55, 55);
-            font-size: large;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-            margin-bottom: 15px;
-        }
-       
-        .hospitais1{
-            cursor:pointer;
-            width: 1000px;
-
-        }
-        
-    </style>
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
    
     <div class="hospitais">
         <div>
-            <input type="text" name="text" id="texto">
-            <button id="post" type="submit" >Post</button>
+            <div class="search">
+                <input type="text" name="text" id="texto">
+                <button id="post" type="submit" >Pesquisar</button>
+            </div>
+           
+            
            </div>
            <h1>Hospitais encontrados</h1>
            <div>
@@ -62,97 +34,7 @@
     </div>
 
 
-    <script>
-
-        let hospitaisSelecionados= [];
-
-        let quantidadeHospitais = 0;
-        let qtdHospitaisSelecionados = 0
-        const btnPost = document.querySelector('button#post');
-        let text = document.getElementById('texto');
-        btnPost.addEventListener('click', buscarPost);
-
-
-
-        function MostraNaTela(data){
-
-            
-                    let hospitais_div = ""
-                    hospitais = data.hospitais;
-                    quantidadeHospitais = hospitais.length;
-                    for (let i = 0; i < hospitais.length; i++) {
-                        hospitais_div += " <div class= 'hospitais1' > <div   class = 'hosp" + i + "' >" + hospitais[i]+    "</div> </div>" ;
-                    }
-                    document.querySelector('.nome_hospital').innerHTML = hospitais_div;
-
-                }
-                
-        
-        console.log(quantidadeHospitais)
-       
-        document.addEventListener('click', function(event) {
-            console.log(hospitaisSelecionados)
-            for(let i = 0; i < quantidadeHospitais ; i++){
-                if (event.target.matches('.hosp' + i)) {
-                    
-                    if(document.querySelector('.hosp' + i).style.backgroundColor == 'rgb(144, 238, 144)'){
-                        hospitaisSelecionados.splice(hospitaisSelecionados.indexOf(document.querySelector('.hosp' + i).innerText), 1)
-                        let selecionado = document.querySelector('.hosp' + i)
-                        selecionado.style.backgroundColor = 'white'
-                        selecionado.style.padding = '0px'   
-                        qtdHospitaisSelecionados -= 1 
-                        botaoSelecionar();
-                        console.log(qtdHospitaisSelecionados)
-                        
-
-                    }
-                    else{
-                        hospitaisSelecionados.push(document.querySelector('.hosp' + i).innerText)
-                        let selecionado = document.querySelector('.hosp' + i)
-                        selecionado.style.backgroundColor = 'rgb(144, 238, 144)'
-                        selecionado.style.padding = '10px'
-                        selecionado.style.width = '700px'
-                        qtdHospitaisSelecionados += 1
-                        console.log(qtdHospitaisSelecionados)
-                        botaoSelecionar();
-                        
-                    }
-                }
-            }
-            
-        });
-
-
-             function buscarPost(){
-                text = text.value;
-                const data = { "mensagem": text};
-                const json = JSON.stringify(data);
-                console.log(json);
-                const requestOptions = {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: json
-                    };
-
-                fetch('http://localhost:5000/texto', requestOptions)
-                    .then(response => response.json())
-                    .then(data => MostraNaTela(data))
-                    .catch(error => console.error(error));
-        }
-
-        function botaoSelecionar(){
-            const botaoSelecionar = document.querySelector('button#enviarSelecionados');
-            botaoSelecionar.addEventListener('click', function(){
-                console.log(hospitaisSelecionados)
-            })
-            if (qtdHospitaisSelecionados > 0){
-                botaoSelecionar.style.backgroundColor= 'rgb(60, 255, 0)';
-            }else{
-                botaoSelecionar.style.backgroundColor= 'cadetblue';
-            }
-            
-        }
-        
+    <script src="index.js" >        
     </script>
     
 </body>
