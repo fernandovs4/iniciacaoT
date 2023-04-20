@@ -62,7 +62,7 @@ let hospitaisSelecionados= [];
                     headers: { 'Content-Type': 'application/json' },
                     body: json
                     };
-                fetch('https://IniciacaoTec.pythonanywhere.com/dados', requestOptions )
+                fetch('https://IniciacaoTec.pythonanywhere.com/texto', requestOptions )
                     .then(response => response.json())
                     .then(data => MostraNaTela(data))
                     .catch(error => console.error(error));
