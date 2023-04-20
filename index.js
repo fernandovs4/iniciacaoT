@@ -77,10 +77,11 @@ let hospitaisSelecionados= [];
                 const requestOptions = {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
+                    mode: 'no-cors', 
                     body: json
                     };
 
-                fetch('https://IniciacaoTec.pythonanywhere.com/texto',{ mode: 'no-cors' }, requestOptions, )
+                fetch('https://IniciacaoTec.pythonanywhere.com/texto', requestOptions, )
                     .then(response => response.json())
                     .then(data => MostraNaTela(data))
                     .catch(error => console.error(error));
